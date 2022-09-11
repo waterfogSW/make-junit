@@ -7,20 +7,14 @@ public class TestRunner {
 
   private static final String testPackage = "com.myjunit.testCase";
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     TestResult testResult = new TestResult();
+
     TestScanner testScanner = new TestScanner();
     Set<Method> methods = testScanner.scanTestMethods(testPackage);
 
-    for (Method method : methods) {
-      Object instance = method
-          .getDeclaringClass()
-          .getDeclaredConstructor()
-          .newInstance();
-
-      method.setAccessible(true);
-      new TestUnit(method, instance).execute(testResult);
-    }
+    TestSuit testSuit = new TestSuit(methods);
+    testSuit.execute(testResult);
 
     testResult.printResult();
   }

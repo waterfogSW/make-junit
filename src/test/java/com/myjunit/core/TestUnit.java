@@ -12,12 +12,10 @@ public class TestUnit {
 
   private final Logger logger;
   private final Method method;
-  private final Object instance;
 
-  public TestUnit(Method method, Object instance) {
+  public TestUnit(Method method) {
     this.method = method;
     this.logger = LoggerFactory.getLogger(method.getName());
-    this.instance = instance;
   }
 
   public String getName() {
@@ -43,12 +41,21 @@ public class TestUnit {
   }
 
   public void test() throws Exception {
-    method.invoke(instance);
+    Object newInstance = getNewInstanceOfDeclaringClass(method);
+    method.setAccessible(true);
+    method.invoke(newInstance);
     logger.info("Test passed");
   }
 
   private boolean isAssertionFailed(InvocationTargetException ite) {
     return ite.getTargetException() instanceof AssertionFailedException;
+  }
+
+  private Object getNewInstanceOfDeclaringClass(Method method) throws Exception {
+    return method
+        .getDeclaringClass()
+        .getDeclaredConstructor()
+        .newInstance();
   }
 
 }
