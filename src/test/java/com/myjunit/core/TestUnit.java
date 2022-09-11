@@ -8,22 +8,23 @@ import org.slf4j.LoggerFactory;
 
 import com.myjunit.core.assertion.AssertionFailedException;
 
-public abstract class TestUnit {
+public class TestUnit {
 
   private final Logger logger;
-  private final String name;
+  private final Method method;
+  private final Object instance;
 
-  public TestUnit(String name) {
-    this.name = name;
-    this.logger = LoggerFactory.getLogger(name);
+  public TestUnit(Method method, Object instance) {
+    this.method = method;
+    this.logger = LoggerFactory.getLogger(method.getName());
+    this.instance = instance;
   }
 
   public String getName() {
-    return name;
+    return method.getName();
   }
 
   public void execute(TestResult testResult) {
-    before();
     testResult.startTest();
     try {
       test();
@@ -38,20 +39,11 @@ public abstract class TestUnit {
     } catch (Exception e) {
       logger.info("Test failed");
       testResult.addError(this, e);
-    } finally {
-      after();
     }
   }
 
-  protected void before() {}
-
-  protected void after() {}
-
   public void test() throws Exception {
-    Method method = this
-        .getClass()
-        .getMethod(name);
-    method.invoke(this);
+    method.invoke(instance);
     logger.info("Test passed");
   }
 
