@@ -1,4 +1,4 @@
-package com.myjunit.core;
+package com.myjunit.core.domain;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.myjunit.core.assertion.AssertionFailedException;
 
-public class TestUnit {
+public class TestUnit implements Test {
 
   private final Logger logger;
   private final Method method;
@@ -18,6 +18,7 @@ public class TestUnit {
     this.logger = LoggerFactory.getLogger(method.getName());
   }
 
+  @Override
   public void execute(TestResult testResult) {
     testResult.startTest();
     try {
