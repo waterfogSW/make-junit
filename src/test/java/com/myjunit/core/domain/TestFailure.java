@@ -8,8 +8,4 @@ public class TestFailure {
     this.testUnit = testUnit;
   }
 
-  public String getTestName() {
-    return testUnit.getName();
-  }
-
 }
