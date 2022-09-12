@@ -1,4 +1,4 @@
-package com.myjunit.core;
+package com.myjunit.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

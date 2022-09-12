@@ -1,10 +1,12 @@
-package com.myjunit.core;
+package com.myjunit.core.util;
 
 import java.lang.reflect.Method;
 import java.util.Set;
 
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
+
+import com.myjunit.core.annotation.Test;
 
 public class TestScanner {
 

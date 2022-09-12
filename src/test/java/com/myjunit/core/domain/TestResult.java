@@ -1,4 +1,4 @@
-package com.myjunit.core;
+package com.myjunit.core.domain;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,6 +3,10 @@ package com.myjunit.core;
 import java.lang.reflect.Method;
 import java.util.Set;
 
+import com.myjunit.core.domain.TestResult;
+import com.myjunit.core.domain.TestSuit;
+import com.myjunit.core.util.TestScanner;
+
 public class TestRunner {
 
   private static final String testPackage = "com.myjunit.testCase";

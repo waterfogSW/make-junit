@@ -1,6 +1,6 @@
 package com.myjunit.testCase;
 
-import com.myjunit.core.Test;
+import com.myjunit.core.annotation.Test;
 import com.myjunit.core.assertion.Assertion;
 
 public class CaseOne {

@@ -1,4 +1,4 @@
-package com.myjunit.core;
+package com.myjunit.core.domain;
 
 public class TestError extends TestFailure {
 
