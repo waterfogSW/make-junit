@@ -18,14 +18,11 @@ public class TestUnit {
     this.logger = LoggerFactory.getLogger(method.getName());
   }
 
-  public String getName() {
-    return method.getName();
-  }
-
   public void execute(TestResult testResult) {
     testResult.startTest();
     try {
-      test();
+      invoke();
+      logger.info("Test passed");
     } catch (InvocationTargetException e) {
       if (isAssertionFailed(e)) {
         logger.info("Test failed");
@@ -40,11 +37,10 @@ public class TestUnit {
     }
   }
 
-  public void test() throws Exception {
+  private void invoke() throws Exception {
     Object newInstance = getNewInstanceOfDeclaringClass(method);
     method.setAccessible(true);
     method.invoke(newInstance);
-    logger.info("Test passed");
   }
 
   private boolean isAssertionFailed(InvocationTargetException ite) {
